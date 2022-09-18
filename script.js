@@ -32,3 +32,40 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+///////////////////////////////////////////////////////////////////
+//LECTURES
+//SELECTING, CREATING,INSERTING AND DELETING ELEMENTS...
+
+//Selecting the entire page...
+console.log(document.documentElement);
+console.log(document.head);
+
+//A node list is returned...
+const header = document.querySelector('.header');
+const allSections = document.querySelectorAll('.section');
+
+document.getElementById('section--1');
+
+//An html collection is returned
+const allButtons = document.getElementsByTagName('button');
+console.log(allButtons);
+
+console.log(document.getElementsByClassName('btn'));
+
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.innerHTML =
+  'We use cookies for improved functionality and analytics.<button class = "btn btn--close-cookie">Got it!</button>';
+
+//prepend adds the element as the first child of the element in question...
+header.append(message);
+// header.append(message.cloneNode(true));
+// header.before(message);
+// header.after(message);
+
+document
+  .querySelector('.btn--close-cookie')
+  .addEventListener('click', function () {
+    message.remove();
+  });
