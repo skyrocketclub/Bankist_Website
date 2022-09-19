@@ -66,6 +66,27 @@ btnScrollTo.addEventListener('click', function (e) {
   });
 });
 
+//Tabbed Component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  //closest method is very vital for delegation
+  //We are storing the button that we just clicked on in the click variable...
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+
+  if (!clicked) return;
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  tabsContent.forEach(t => t.classList.remove('operations__content--active'));
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
 ////////////////////////////////////////////////////////////////
 //PAGE NAVIGATION
 
@@ -180,15 +201,15 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 // logo.classList.toggle('c');
 // logo.classList.contains('c');
 
-const h1 = document.querySelector('h1');
-const alertH1 = function (e) {
-  alert('addEventListener: Great! you are reading the heading :D');
-};
-//This is the one being used now..
-h1.addEventListener('mouseenter', alertH1);
+// const h1 = document.querySelector('h1');
+// const alertH1 = function (e) {
+//   alert('addEventListener: Great! you are reading the heading :D');
+// };
+// //This is the one being used now..
+// h1.addEventListener('mouseenter', alertH1);
 
-//removes the event listener after three seconds
-setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+// //removes the event listener after three seconds
+// setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 
 // h1.onmouseenter = function (e) {
 //   alert('addEventListener: Great! you are reading the heading :D');
@@ -219,29 +240,29 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 // });
 
 //DOM TRAVERSING....
-const hOne = document.querySelector('h1');
+// const hOne = document.querySelector('h1');
 
-//reading all the children of h1 that includes 'highlight in its name no matter how deep into the DOM tree
-console.log(hOne.querySelectorAll('.highlight'));
-console.log(hOne.childNodes);
-console.log(hOne.children); //works only for direct children...
+// //reading all the children of h1 that includes 'highlight in its name no matter how deep into the DOM tree
+// console.log(hOne.querySelectorAll('.highlight'));
+// console.log(hOne.childNodes);
+// console.log(hOne.children); //works only for direct children...
 
-hOne.firstElementChild.style.color = 'white';
-hOne.lastElementChild.style.color = 'skyblue';
+// hOne.firstElementChild.style.color = 'white';
+// hOne.lastElementChild.style.color = 'skyblue';
 
-//Going upwards
-console.log(hOne.parentNode);
+// //Going upwards
+// console.log(hOne.parentNode);
 
-//We want to find the header closest related to hOne, mayber a parent
-hOne.closest('.header').style.background = 'var(--gradient-secondary)';
+// //We want to find the header closest related to hOne, mayber a parent
+// hOne.closest('.header').style.background = 'var(--gradient-secondary)';
 
-hOne.closest('h1').style.background = 'var(--gradient-primary)';
-console.log(hOne.previousElementSibling);
-console.log(hOne.nextElementSibling);
+// hOne.closest('h1').style.background = 'var(--gradient-primary)';
+// console.log(hOne.previousElementSibling);
+// console.log(hOne.nextElementSibling);
 
-console.log(hOne.parentElement.children);
+// console.log(hOne.parentElement.children);
 
-//Selecting and editing all the children of the parent excepth the current element
-[...hOne.parentElement.children].forEach(function (e) {
-  if (e != hOne) e.style.transform = 'scale(0.5)';
-});
+// //Selecting and editing all the children of the parent excepth the current element
+// [...hOne.parentElement.children].forEach(function (e) {
+//   if (e != hOne) e.style.transform = 'scale(0.5)';
+// });
